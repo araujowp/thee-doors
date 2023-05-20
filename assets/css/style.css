@@ -1,0 +1,29 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hall{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 200px;
+    width: 500px;
+    background: transparent;
+    border-radius: 3px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, .5) ;
+}
+
+.door_face{
+    display: flex;
+    font-size: 60px;
+    color: white;
+    background-color:darkred;
+    width: 100px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
