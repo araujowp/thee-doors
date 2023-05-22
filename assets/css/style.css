@@ -16,14 +16,22 @@ body{
     box-shadow: 0px 8px 10px rgba(0, 0, 0, .5) ;
 }
 
-.door_face{
+.door {
     display: flex;
-    font-size: 60px;
-    color: white;
-    background-color:darkred;
-    width: 100px;
-    height: 150px;
     align-items: center;
     justify-content: center;
+    width: 100px;
+    height: 150px;
+    font-size: 60px;
     border-radius: 5px;
+}
+
+.door_face {
+    background-color: darkred;
+    color: white;
+}
+
+.door_empty {
+    background-color: black;
+    color: white;
 }
