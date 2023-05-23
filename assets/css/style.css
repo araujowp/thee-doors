@@ -5,6 +5,12 @@ body{
     justify-content: center;
 }
 
+.general{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .hall{
     display: flex;
     align-items: center;
@@ -27,11 +33,27 @@ body{
 }
 
 .door_face {
-    background-color: darkred;
+    background-color: orange;
     color: white;
 }
 
 .door_empty {
     background-color: black;
     color: white;
+}
+
+.door_marked {
+    border-style: solid; /* Estilo da borda */
+    border-width: 3px; /* Largura da borda */
+    border-color:blue; /* Cor da borda */
+}
+
+.message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: orange;
+    width: 500px;
+    color: white;
+    font-size: 30px;
 }

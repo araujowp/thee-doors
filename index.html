@@ -8,10 +8,16 @@
     <title>Choose a door</title>
 </head>
 <body>
-    <div class="hall">
-        <span id="door1" class="door_face">A</span>
-        <span id="door2" class="door_face">B</span>
-        <span id="door3" class="door_face">C</span>
+    <div class="general">
+        <div class="hall">
+            <span id="door1" class="door door_face" onclick="doorClick(this)">1</span>
+            <span id="door2" class="door door_face" onclick="doorClick(this)">2</span>
+            <span id="door3" class="door door_face" onclick="doorClick(this)">3</span>
+        </div>
+        <br>
+        <div id="message" class="message">Choose a door</div>
     </div>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
