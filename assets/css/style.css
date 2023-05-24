@@ -17,9 +17,9 @@ body{
     justify-content: space-around;
     height: 200px;
     width: 500px;
-    background: transparent;
+    background: #eee;
     border-radius: 3px;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, .5) ;
+    /* box-shadow: 0px 8px 10px rgba(0, 0, 0, .5) ; */
 }
 
 .door {
@@ -68,4 +68,14 @@ body{
     width: 500px;
     color: white;
     font-size: 30px;
+}
+
+.myButton{
+    padding: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: orange;
+    border-radius: 3px;
+    color: orange;
+    font-size: 20px;
 }
