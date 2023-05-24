@@ -42,11 +42,23 @@ body{
     color: white;
 }
 
+.door_wrong {
+    background-color: red;
+    color: black;
+}
+
 .door_marked {
     border-style: solid; /* Estilo da borda */
     border-width: 3px; /* Largura da borda */
     border-color:blue; /* Cor da borda */
 }
+
+
+.door_correct {
+    background-color: lightblue;
+    color: blue;
+}
+
 
 .message{
     display: flex;
