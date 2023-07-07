@@ -10,6 +10,8 @@ sorted =  Math.floor(Math.random() * 3) + 1;
 firstDoor = 0;
 secondDoor = 0;
 thirdDoor = 0;
+countErrors = 0;
+countAttempts = 0; 
 
 message2.innerText = sorted;
 
@@ -20,7 +22,7 @@ function doorClick(door){
     if (firstDoor === 0){
         door.classList.add('door_marked');
         firstDoor = selectedDoor;
-        message.textContent = 'Open other door';
+        message.textContent = 'Open a empty door';
         return;
     }
     
@@ -35,32 +37,94 @@ function doorClick(door){
         secondDoor = selectedDoor;
         
         if(selectedDoor == sorted){
-            loose(door);
+            gameOver(false);
+            return;
         }
-        door.classList.add('door_empty');
-        message2.innerText = 'porta vazia';
+
+        let firstDoorCorrect = firstDoor == sorted; 
+        console.log(' firstDoorCorrect ' + firstDoorCorrect);
+
+        var answer = confirm("do you want to change port?");
+        if (answer) {
+            console.log('eu troquei');
+            message2.innerText = 'quero trocar';
+            if(firstDoorCorrect){
+                gameOver(false);
+                return;
+            }
+            console.log("quero continuar");
+        } else {
+            console.log('não troquei');
+            message2.innerText = 'não quero trocar';
+            if(!firstDoorCorrect){
+                gameOver(false);
+                return; 
+            }
+        }
+        gameOver(true);
         return;
     }
     
-    if(selectedDoor == sorted){
-        door.classList.add('door_correct');
-        message.textContent = 'Win correct door';
-        return;
+}
+
+function calculate(){
+    console.log('calculei' + countErrors);
+    errors = document.getElementById('errors');
+    errors.textContent = countErrors;
+
+    attempts = document.getElementById('attempts');
+    attempts.textContent = countAttempts;
+
+    sucesses = document.getElementById('successes');
+    sucesses.textContent = (((countAttempts - countErrors) / countAttempts) * 100).toFixed(0) + '%';
+
+}
+
+function lastDoor(first, second){
+    const list  = [1,2,3];
+    const fileredList = list.filter(item => item !== first && item !== second);
+    return fileredList[0];
+}
+
+
+function gameOver(win){
+
+    if(win){
+        message.textContent = 'Congratulatios';
     }else{
-        loose(door);
+        countErrors++;
+        message.textContent = 'Loose the correct door is ' + sorted;
     }
 
+    countAttempts++;
+    showLoseDoor(1);
+    showLoseDoor(2);
+    showLoseDoor(3);
+    showCorrectDoor(sorted);
+    calculate();
+    console.log('vitoria ' + win);
 }
 
-function loose(door){
-    door.classList.add('door_wrong');
-    message.textContent = 'Lose wrong door';
+function showLoseDoor(doorNumber){
+    var doorSelect = document.getElementById('door' + doorNumber);
+    console.log('porta certa ' + doorNumber);
+    doorSelect.classList.add('door_wrong');
 }
+
+function showCorrectDoor(doorNumber){
+    var doorSelect = document.getElementById('door' + doorNumber);
+    console.log('porta certa ' + doorNumber);
+    doorSelect.classList.add('door_correct');
+}
+
 
 function restartClick(myButton){
     firstDoor = 0;
     secondDoor = 0;
     thirdDoor = 0;
+    sorted =  Math.floor(Math.random() * 3) + 1;
+    message2.innerText = sorted;
+
     door1.classList.remove(...door1.classList);
     door1.classList.add('door','door_face');
     door2.classList.remove(...door2.classList);
