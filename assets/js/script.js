@@ -39,30 +39,35 @@ function doorClick(door){
         if(selectedDoor == sorted){
             gameOver(false);
             return;
+        }else{
+            console.log('mostra a porta ' + secondDoor);
+            showLoseDoor(secondDoor);
+            setTimeout(function(){
+                let firstDoorCorrect = firstDoor == sorted; 
+                console.log(' firstDoorCorrect ' + firstDoorCorrect);
+        
+                var answer = confirm("do you want to change port?");
+                if (answer) {
+                    console.log('eu troquei');
+                    message2.innerText = 'quero trocar';
+                    if(firstDoorCorrect){
+                        gameOver(false);
+                        return;
+                    }
+                    console.log("quero continuar");
+                } else {
+                    console.log('não troquei');
+                    message2.innerText = 'não quero trocar';
+                    if(!firstDoorCorrect){
+                        gameOver(false);
+                        return; 
+                    }
+                }
+                gameOver(true);
+                return;        
+            },100);
         }
 
-        let firstDoorCorrect = firstDoor == sorted; 
-        console.log(' firstDoorCorrect ' + firstDoorCorrect);
-
-        var answer = confirm("do you want to change port?");
-        if (answer) {
-            console.log('eu troquei');
-            message2.innerText = 'quero trocar';
-            if(firstDoorCorrect){
-                gameOver(false);
-                return;
-            }
-            console.log("quero continuar");
-        } else {
-            console.log('não troquei');
-            message2.innerText = 'não quero trocar';
-            if(!firstDoorCorrect){
-                gameOver(false);
-                return; 
-            }
-        }
-        gameOver(true);
-        return;
     }
     
 }
@@ -107,7 +112,7 @@ function gameOver(win){
 
 function showLoseDoor(doorNumber){
     var doorSelect = document.getElementById('door' + doorNumber);
-    console.log('porta certa ' + doorNumber);
+    console.log('errada ' + doorNumber);
     doorSelect.classList.add('door_wrong');
 }
 
