@@ -50,7 +50,7 @@ body{
 .door_marked {
     border-style: solid; /* Estilo da borda */
     border-width: 3px; /* Largura da borda */
-    border-color:blue; /* Cor da borda */
+    border-color:rgb(83, 83, 87); /* Cor da borda */
 }
 
 

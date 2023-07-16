@@ -7,7 +7,7 @@ class LanguageRepository {
         ['change_port','do you want to change port?','Quer trocar de porta?'],
         ['Congratulatios', 'Congratulatios', 'Parabens'],
         ['lose_door','Loose the correct door is ', 'Perdeu porta correta '],
-        ['Attempts','Attempts','Acertos'],
+        ['Attempts','Attempts','Tentativas'],
         ['Errors','Errors','Erros'],
         ['Successes','Successes','Sucessos'],
         ['restart' , 'Restart', 'Reiniciar']
