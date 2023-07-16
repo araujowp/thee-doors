@@ -8,7 +8,17 @@
     <title>Choose a door</title>
 </head>
 <body>
+
+
+
     <div class="general">
+        <div>
+            <label id='labelLanguage' for="language-select">Language:</label>
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="1">English</option>
+                <option value="2">Português</option>
+              </select>
+        </div>
         <div class="hall">
             <span id="door1" class="door door_face" onclick="doorClick(this)">1</span>
             <span id="door2" class="door door_face" onclick="doorClick(this)">2</span>
@@ -16,7 +26,6 @@
         </div>
         <br>
         <div id="message" class="message">Choose a door</div>
-        <div id="message2" class="message">Choose a door</div>
         <br>
         <div class="myLine">
             <span id="labelAttempts">Attempts</span>
@@ -29,6 +38,7 @@
         <span id="restart" class="myButton" onclick="restartClick(this)">Restart</span>
     </div>
 
+    <script src="assets/js/language_repository.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>

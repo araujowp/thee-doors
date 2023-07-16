@@ -4,7 +4,6 @@ door2 = document.getElementById('door2');
 door3 = document.getElementById('door3');
 
 message  = document.getElementById('message');
-message2  = document.getElementById('message2');
 
 sorted =  Math.floor(Math.random() * 3) + 1;
 firstDoor = 0;
@@ -13,7 +12,8 @@ thirdDoor = 0;
 countErrors = 0;
 countAttempts = 0; 
 
-message2.innerText = sorted;
+const languageRepository = new LanguageRepository();
+languageRepository.setLanguage(1);
 
 function doorClick(door){
     
@@ -22,14 +22,14 @@ function doorClick(door){
     if (firstDoor === 0){
         door.classList.add('door_marked');
         firstDoor = selectedDoor;
-        message.textContent = 'Open a empty door';
+        message.textContent = languageRepository.getMessage('Open a empty door');
         return;
     }
     
     if(firstDoor === selectedDoor && secondDoor === 0 ){
         door.classList.remove('door_marked');
         firstDoor = 0;
-        message.textContent = 'Choose a door';
+        message.textContent = languageRepository.getMessage('Choose a door');
         return;
     }
     
@@ -46,18 +46,13 @@ function doorClick(door){
                 let firstDoorCorrect = firstDoor == sorted; 
                 console.log(' firstDoorCorrect ' + firstDoorCorrect);
         
-                var answer = confirm("do you want to change port?");
+                var answer = confirm(languageRepository.getMessage('change_port'));
                 if (answer) {
-                    console.log('eu troquei');
-                    message2.innerText = 'quero trocar';
                     if(firstDoorCorrect){
                         gameOver(false);
                         return;
                     }
-                    console.log("quero continuar");
                 } else {
-                    console.log('não troquei');
-                    message2.innerText = 'não quero trocar';
                     if(!firstDoorCorrect){
                         gameOver(false);
                         return; 
@@ -95,10 +90,10 @@ function lastDoor(first, second){
 function gameOver(win){
 
     if(win){
-        message.textContent = 'Congratulatios';
+        message.textContent = languageRepository.getMessage('Congratulatios');
     }else{
         countErrors++;
-        message.textContent = 'Loose the correct door is ' + sorted;
+        message.textContent = languageRepository.getMessage('lose_door') + sorted;
     }
 
     countAttempts++;
@@ -112,13 +107,11 @@ function gameOver(win){
 
 function showLoseDoor(doorNumber){
     var doorSelect = document.getElementById('door' + doorNumber);
-    console.log('errada ' + doorNumber);
     doorSelect.classList.add('door_wrong');
 }
 
 function showCorrectDoor(doorNumber){
     var doorSelect = document.getElementById('door' + doorNumber);
-    console.log('porta certa ' + doorNumber);
     doorSelect.classList.add('door_correct');
 }
 
@@ -128,7 +121,7 @@ function restartClick(myButton){
     secondDoor = 0;
     thirdDoor = 0;
     sorted =  Math.floor(Math.random() * 3) + 1;
-    message2.innerText = sorted;
+    message.textContent = languageRepository.getMessage('Choose a door');
 
     door1.classList.remove(...door1.classList);
     door1.classList.add('door','door_face');
@@ -136,4 +129,27 @@ function restartClick(myButton){
     door2.classList.add('door','door_face');
     door3.classList.remove(...door3.classList);
     door3.classList.add('door','door_face');
+}
+
+function changeLanguage(language){
+    
+    languageRepository.setLanguage(language);
+    restartClick();
+
+    labelLanguage = document.getElementById('labelLanguage');
+    labelLanguage.textContent = languageRepository.getMessage('language');
+
+    labelAttempts = document.getElementById('labelAttempts');
+    labelAttempts.textContent = languageRepository.getMessage('Attempts');
+    
+    labelErrors = document.getElementById('labelErrors');
+    labelErrors.textContent = languageRepository.getMessage('Errors');
+    
+    labelSuccesses = document.getElementById('labelSuccesses');
+    labelSuccesses.textContent = languageRepository.getMessage('Successes');
+
+
+    buttonRestart = document.getElementById('restart');
+    buttonRestart.textContent = languageRepository.getMessage('restart')
+
 }
