@@ -6,6 +6,7 @@ door3 = document.getElementById('door3');
 message  = document.getElementById('message');
 
 sorted =  Math.floor(Math.random() * 3) + 1;
+console.log('porta escolhida ' + sorted);
 firstDoor = 0;
 secondDoor = 0;
 thirdDoor = 0;
@@ -22,53 +23,32 @@ function doorClick(door){
     if (firstDoor === 0){
         door.classList.add('door_marked');
         firstDoor = selectedDoor;
-        message.textContent = languageRepository.getMessage('Open a empty door');
-        return;
     }
-    
-    if(firstDoor === selectedDoor && secondDoor === 0 ){
-        door.classList.remove('door_marked');
-        firstDoor = 0;
-        message.textContent = languageRepository.getMessage('Choose a door');
-        return;
-    }
-    
-    if(secondDoor === 0){
-        secondDoor = selectedDoor;
-        
-        if(selectedDoor == sorted){
-            gameOver(false);
-            return;
-        }else{
-            console.log('mostra a porta ' + secondDoor);
-            showLoseDoor(secondDoor);
-            setTimeout(function(){
-                let firstDoorCorrect = firstDoor == sorted; 
-                console.log(' firstDoorCorrect ' + firstDoorCorrect);
-        
-                var answer = confirm(languageRepository.getMessage('change_port'));
-                if (answer) {
-                    if(firstDoorCorrect){
-                        gameOver(false);
-                        return;
-                    }
-                } else {
-                    if(!firstDoorCorrect){
-                        gameOver(false);
-                        return; 
-                    }
-                }
-                gameOver(true);
-                return;        
-            },100);
-        }
 
-    }
+    secondDoor = empityDoor(firstDoor, sorted);
+    showLoseDoor(secondDoor);
+    setTimeout(function(){
+        let firstDoorCorrect = firstDoor == sorted; 
+
+        var answer = confirm(languageRepository.getMessage('change_port'));
+        if (answer) {
+            if(firstDoorCorrect){
+                gameOver(false);
+                return;
+            }
+        } else {
+            if(!firstDoorCorrect){
+                gameOver(false);
+                return; 
+            }
+        }
+        gameOver(true);
+        return;        
+    },100);
     
 }
 
 function calculate(){
-    console.log('calculei' + countErrors);
     errors = document.getElementById('errors');
     errors.textContent = countErrors;
 
@@ -80,9 +60,9 @@ function calculate(){
 
 }
 
-function lastDoor(first, second){
+function empityDoor(first, sorted){
     const list  = [1,2,3];
-    const fileredList = list.filter(item => item !== first && item !== second);
+    const fileredList = list.filter(item => item !== Number(first) && item !== Number(sorted));
     return fileredList[0];
 }
 
@@ -102,7 +82,6 @@ function gameOver(win){
     showLoseDoor(3);
     showCorrectDoor(sorted);
     calculate();
-    console.log('vitoria ' + win);
 }
 
 function showLoseDoor(doorNumber){
@@ -121,6 +100,7 @@ function restartClick(myButton){
     secondDoor = 0;
     thirdDoor = 0;
     sorted =  Math.floor(Math.random() * 3) + 1;
+    console.log('porta escolhida ' + sorted);
     message.textContent = languageRepository.getMessage('Choose a door');
 
     door1.classList.remove(...door1.classList);

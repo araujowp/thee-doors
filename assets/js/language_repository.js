@@ -20,10 +20,8 @@ class LanguageRepository {
     }
   
     getMessage(key) {
-      console.log(key);
       const record = this.records.find(reg => reg[0] === key);
       if (record) {
-        console.log('encontrado ' + record[this._language] + '  ' + record[1] + ' ' + record[2]);
         return record[this._language];
       }
       return 'Key not found.';
