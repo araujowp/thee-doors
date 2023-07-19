@@ -6,7 +6,6 @@ door3 = document.getElementById('door3');
 message  = document.getElementById('message');
 
 sorted =  Math.floor(Math.random() * 3) + 1;
-console.log('porta escolhida ' + sorted);
 firstDoor = 0;
 secondDoor = 0;
 thirdDoor = 0;
@@ -100,7 +99,6 @@ function restartClick(myButton){
     secondDoor = 0;
     thirdDoor = 0;
     sorted =  Math.floor(Math.random() * 3) + 1;
-    console.log('porta escolhida ' + sorted);
     message.textContent = languageRepository.getMessage('Choose a door');
 
     door1.classList.remove(...door1.classList);
